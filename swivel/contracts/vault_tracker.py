@@ -49,7 +49,3 @@ class VaultTracker(base):
     # TODO
     def balances_of(self):
         pass
-
-    # TODO
-    def mature_vault(self, o=None):
-        pass

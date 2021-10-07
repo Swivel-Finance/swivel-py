@@ -77,13 +77,3 @@ class VaultTracker(ABC):
             A tuple containing Vault notional and redeemable amounts
         """
         pass
-
-    @abstractmethod
-    def mature_vault(self, o=None):
-        """Attempts to set the mature flag of a vault
-
-        If the maturity has been reached, set the matured flag to True and set the maturity_rate to the
-        current exchange rate for the c_token
-        """
-
-        pass
