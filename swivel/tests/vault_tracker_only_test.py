@@ -19,6 +19,19 @@ def vault_tracker(vendor):
     tracker.at(tx_rcpt['contractAddress'])
     return tracker
 
+def test_admin(vault_tracker):
+    addr = vault_tracker.admin()
+    # the vendor will normalize .account...
+    assert addr == vault_tracker.vendor.account
+
 def test_c_token_addr(vault_tracker):
     addr = vault_tracker.c_token_addr()
     assert addr == vault_tracker.vendor.instance.toChecksumAddress(C_TOKEN_ADDR)
+
+def test_swivel_addr(vault_tracker):
+    addr = vault_tracker.swivel()
+    assert addr == SWIVEL_ADDR
+
+def test_maturity(vault_tracker):
+    mty = vault_tracker.maturity()
+    assert mty == 123456789

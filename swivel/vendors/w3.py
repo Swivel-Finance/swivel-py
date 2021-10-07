@@ -13,8 +13,8 @@ class W3:
         if a != None:
             self.account = a
         else:
-            if self.instance.eth.defaultAccount != None:
-                self.account = self.instance.eth.defaultAccount
+            if bool(self.instance.eth.default_account):
+                self.account = self.instance.eth.default_account
             else:
                 self.account = self.instance.eth.accounts[0]
 

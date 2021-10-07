@@ -8,4 +8,15 @@
    |\_________\|____________|\|__|\|__|/       \|_______|\|_______\|__|\|__||\___/ /     
    \|_________|                                                             \|___|/      
 ```
-## A python library for interaction with the Swivel protocol
+### A python library for interaction with the Swivel protocol
+
+#### PSA
+We highly recommend you setup a virtual env for this, and any python project. That is all.
+
+## Installation
+
+    pip install -r requirements.txt
+
+## Running Tests
+
+    python -m pytest
