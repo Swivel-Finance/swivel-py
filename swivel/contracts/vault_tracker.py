@@ -8,21 +8,7 @@ class VaultTracker(base):
             v (W3) Instance of a vendor W3 class (no other vendors are supported as of now)
         """
         self.vendor = v
-        # TODO do we need to actually keep this reference?
         self.abi = VAULT_TRACKER
-
-    def at(self, a, o=None):
-        """Get a reference to the vendor specific contract instance deployed at a given address
-
-        Parameters:
-            a (address) the address of the deployed smart contract
-            o (txOpts) optional tx options
-        """
-        self.address = a
-        # TODO throw if the contract is falsy?
-        self.contract = self.vendor.contract(a, self.abi)
-        # TODO do we want to keep this reference?
-        self.options = o
 
     def admin(self):
         return self.contract.functions.admin().call()
