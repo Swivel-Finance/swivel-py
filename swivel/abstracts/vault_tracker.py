@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from swivel.abstracts import Deployed
 
-class VaultTracker(ABC):
+class VaultTracker(Deployed):
     """Persists and curates Vault objects associated with users
 
     Note that a Vault is a Dict object in this form:
