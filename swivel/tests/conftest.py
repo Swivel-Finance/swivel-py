@@ -26,8 +26,6 @@ def provider(eth_tester):
 def vendor(provider):
     return W3(provider)
 
-
-
 @pytest.fixture(scope='module')
 def market_place(vendor):
     # the HOC has it's abi available
