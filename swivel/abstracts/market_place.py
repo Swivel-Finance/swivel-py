@@ -29,6 +29,20 @@ class MarketPlace(Deployed):
         pass
 
     @abstractmethod
+    def c_token_address(self, u, m):
+        """Gets the compound token address associated with a given market
+
+        Parameters:
+            u (string) Underlying token address
+            m (int) Maturity epoch
+
+        Returns:
+            Compound token address
+        """
+
+        pass
+
+    @abstractmethod
     def create_market(self, u, m, c, n, s, d, o=None):
         """Creates a new market
 
@@ -68,15 +82,57 @@ class MarketPlace(Deployed):
         pass
 
     @abstractmethod
-    def c_token_address(self, u, m):
-        """Gets the compound token address associated with a given market
+    def mature_market(self, u, m, o=None):
+        """Called after maturity, allowing all of the zcTokens to earn floating interest on Compound until funds are released
 
         Parameters:
             u (string) Underlying token address
             m (int) Maturity epoch
+        """
+
+        pass
+
+    @abstractmethod
+    def mature(self, u, m):
+        """Checks if the market has been marked as mature
+
+        Parameters:
+            u (string) Underlying token address
+            m (int) Muturity epoch
 
         Returns:
-            Compound token address
+            True if market has been matured, False otherwise
+        """
+
+        pass
+
+    @abstractmethod
+    def maturity_rate(self, u, m):
+        """Returns the maturity rate of a given market
+
+        Description:
+            If a market has been matured, the maturity rate will have been set.
+
+        Parameters:
+            u (string) Underlying token address
+            m (int) Muturity epoch
+
+        Returns:
+            Maturity rate if present, zero otherwise
+        """
+
+        pass
+
+    @abstractmethod
+    def transfer_vault_notional(self, u, m, t, a, o=None):
+        """Transfer vault notional from sender to a given address
+
+        Parameters:
+            u (string) Underlying token address
+            m (int) Muturity epoch
+            t (string) Address of the amount owner
+            a (int) Amount to transfer
+            o (dict) Optional transaction opts
         """
 
         pass
