@@ -55,11 +55,11 @@ class VaultTracker(Deployed):
         pass
 
     @abstractmethod
-    def vaults(self):
+    def vaults(self, o):
         """Get a Vault for a given address
 
         Parameters:
-            o (address) Owner of the Vault
+            o (string) Address of the vault owner
 
         Returns:
             A Vault dict
@@ -68,11 +68,11 @@ class VaultTracker(Deployed):
         pass
     
     @abstractmethod
-    def balances_of(self):
+    def balances_of(self, o):
         """Get Vault balances for a given user
 
         Parameters:
-            o (address) Owner of the Vault
+            o (string) Address of the vault owner
 
         Returns:
             A tuple containing Vault notional and redeemable amounts
