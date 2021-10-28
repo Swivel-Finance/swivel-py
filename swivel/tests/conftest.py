@@ -6,7 +6,7 @@ from eth_tester import PyEVMBackend, EthereumTester
 from swivel.vendors import W3
 from swivel.constants.bin import MARKET_PLACE, SWIVEL
 from swivel.contracts import MarketPlace, Swivel
-from .helpers import Transactor
+from .helpers import Caller, Transactor
 
 @pytest.fixture(scope='module')
 def logger():
@@ -30,6 +30,10 @@ def vendor(provider):
 @pytest.fixture(scope='function')
 def transactor():
     return Transactor()
+
+@pytest.fixture(scope='function')
+def caller():
+    return Caller()
 
 @pytest.fixture(scope='module')
 def market_place(vendor):
