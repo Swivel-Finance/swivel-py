@@ -28,10 +28,8 @@ class VaultTracker(base):
     def maturity_rate(self):
         return self.contract.functions.maturityRate().call()
 
-    # TODO
-    def vaults(self):
-        pass 
+    def vaults(self, o):
+        return self.contract.functions.vaults(o).call()
     
-    # TODO
-    def balances_of(self):
-        pass
+    def balances_of(self, o):
+        return self.contract.functions.balancesOf(o).call() 
