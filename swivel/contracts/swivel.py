@@ -34,12 +34,12 @@ class Swivel(base):
 
     def initiate(self, orders, a, s, opts=None):
         # normalize the full signatures to a list of vrs components. TODO is the list what is expected?
-        components = list(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
+        components = tuple(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
         return self.contract.functions.initiate(orders, a, components).transact(self.tx_opts(opts))
 
     def exit(self, orders, a, s, opts=None):
         # normalize the full signatures to a list of vrs components. TODO is the list what is expected?
-        components = list(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
+        components = tuple(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
         return self.contract.functions.exit(orders, a, components).transact(self.tx_opts(opts))
 
     def cancel(self, order, s, opts=None):

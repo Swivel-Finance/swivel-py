@@ -57,9 +57,9 @@ class Swivel(Deployed):
         """Allows a user to initiate a position
 
         Parameters:
-            orders (list) Offline swivel orders
+            orders (tuple) Offline swivel orders
             a (list) Order volume (principal) amounts relative to orders list
-            s (list) Valid ECDSA signatures for each order
+            s (tuple) Valid ECDSA signatures for each order
             opts (dict) Optional tx opts
         """
 
@@ -70,9 +70,9 @@ class Swivel(Deployed):
         """Allows a user to exit (sell) a currently held position to the marketplace
 
         Parameters:
-            orders (list) Offline swivel orders
+            orders (tuple) Offline swivel orders
             a (list) Order volume (principal) amounts relative to orders list
-            s (list) Valid ECDSA signatures for each order
+            s (tuple) Valid ECDSA signatures for each order
             opts (dict) Optional tx opts
         """
 

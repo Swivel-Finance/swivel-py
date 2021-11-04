@@ -7,6 +7,7 @@ test_deps = [
     'pytest==6.2.5',
     'eth-tester==0.5.0b4',
     'web3==5.23.1',
+    'py-eth-sig-utils==0.4.0',
 ]
 
 extras = {
@@ -15,7 +16,7 @@ extras = {
 
 setup(
     name='swivel',
-    version='0.0.1',
+    version='0.0.2',
     author='Swivel Finance',
     author_email='rob@swivel.finance',
     description='A python library for interacting with the Swivel Finance Protocol',

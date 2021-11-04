@@ -13,7 +13,7 @@ class VaultTracker(base):
     def admin(self):
         return self.contract.functions.admin().call()
 
-    def c_token_addr(self):
+    def c_token_address(self):
         return self.contract.functions.cTokenAddr().call()
 
     def swivel(self):
