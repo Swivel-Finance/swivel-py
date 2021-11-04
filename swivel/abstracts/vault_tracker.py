@@ -22,7 +22,7 @@ class VaultTracker(Deployed):
         pass
 
     @abstractmethod
-    def c_token_addr(self):
+    def c_token_address(self):
         """Adress of the compound token referenced by this vault tracker"""
 
         pass

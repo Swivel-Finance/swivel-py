@@ -26,7 +26,7 @@ def test_admin(vault_tracker):
     assert addr == vault_tracker.vendor.account
 
 def test_c_token_addr(vault_tracker):
-    addr = vault_tracker.c_token_addr()
+    addr = vault_tracker.c_token_address()
     assert addr == vault_tracker.vendor.instance.toChecksumAddress('0x6d7f0754ffeb405d23c51ce938289d4835be3b14')
 
 def test_swivel_addr(vault_tracker):
