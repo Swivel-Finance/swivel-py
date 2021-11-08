@@ -1,7 +1,7 @@
 from abc import ABC
 
 class Deployed(ABC):
-    def at(self, a, o=None):
+    def at(self, a, opts=None):
         """Get a reference to the vendor specific contract instance deployed at a given address
 
         Parameters:
@@ -13,9 +13,9 @@ class Deployed(ABC):
         # TODO throw if the contract is falsy?
         self.contract = self.vendor.contract(a, self.abi)
         # TODO do we want to keep this reference?
-        self.options = o
+        self.opts = opts
 
-    def tx_opts(self, o=None):
+    def tx_opts(self, o):
         """Sets default transaction options"""
 
         defaults = { 'from': self.vendor.account }

@@ -3,19 +3,27 @@ from swivel.abstracts import Deployed
 
 class MarketPlace(Deployed):
     @abstractmethod
-    def admin(self):
-        """The stored admin address for this contract"""
+    def admin(self, opts=None):
+        """The stored admin address for this contract
+
+        Returns:
+            web3 callable, opts
+        """
 
         pass
 
     @abstractmethod
-    def swivel(self):
-        """The address of the associated Swivel contract deployment"""
+    def swivel(self, opts=None):
+        """The address of the associated Swivel contract deployment
+
+        Returns:
+            web3 callable, opts
+        """
 
         pass
 
     @abstractmethod
-    def set_swivel_address(self, a, o=None):
+    def set_swivel_address(self, a, opts=None):
         """Sets the address of the Swivel smart contract this market place is associated with
 
         Description:
@@ -23,27 +31,31 @@ class MarketPlace(Deployed):
 
         Parameters:
             a (address) The address of a deployed Swivel smart contract
-            o (dict) Optional transaction options
+            opts (dict) Optional transaction options
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
 
     @abstractmethod
-    def c_token_address(self, u, m):
+    def c_token_address(self, u, m, opts=None):
         """Gets the compound token address associated with a given market
 
         Parameters:
             u (string) Underlying token address
             m (int) Maturity epoch
+            opts (dict) optional call opts
 
         Returns:
-            Compound token address
+            web3 callable, opts
         """
 
         pass
 
     @abstractmethod
-    def create_market(self, u, m, c, n, s, d, o=None):
+    def create_market(self, u, m, c, n, s, d, opts=None):
         """Creates a new market
 
         Description:
@@ -59,13 +71,16 @@ class MarketPlace(Deployed):
             n (string) Name for the new ZcToken
             s (string) Name for the new ZcToken
             d (int) Number of digits expected for the new ZcToken
-            o (dict) Optional transaction options
+            opts (dict) Optional transaction options
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
 
     @abstractmethod
-    def markets(self, u, m):
+    def markets(self, u, m, opts=None):
         """Gets the market associated with the given underlying and maturity arguments
 
         Description:
@@ -74,40 +89,46 @@ class MarketPlace(Deployed):
         Parameters:
             u (string) Underlying token address
             m (int) Muturity epoch
+            opts (dict) optional call opts
 
         Returns:
-            Market object if present
+            web3 callable, opts
         """
 
         pass
 
     @abstractmethod
-    def mature_market(self, u, m, o=None):
+    def mature_market(self, u, m, opts=None):
         """Called after maturity, allowing all of the zcTokens to earn floating interest on Compound until funds are released
 
         Parameters:
             u (string) Underlying token address
             m (int) Maturity epoch
+            opts (dict) optional call opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
 
     @abstractmethod
-    def mature(self, u, m):
+    def mature(self, u, m, opts=None):
         """Checks if the market has been marked as mature
 
         Parameters:
             u (string) Underlying token address
             m (int) Muturity epoch
+            opts (dict) optional call opts
 
         Returns:
-            True if market has been matured, False otherwise
+            web3 callable, opts
         """
 
         pass
 
     @abstractmethod
-    def maturity_rate(self, u, m):
+    def maturity_rate(self, u, m, opts=None):
         """Returns the maturity rate of a given market
 
         Description:
@@ -116,15 +137,16 @@ class MarketPlace(Deployed):
         Parameters:
             u (string) Underlying token address
             m (int) Muturity epoch
+            opts (dict) optional call opts
 
         Returns:
-            Maturity rate if present, zero otherwise
+            web3 callable, opts
         """
 
         pass
 
     @abstractmethod
-    def transfer_vault_notional(self, u, m, t, a, o=None):
+    def transfer_vault_notional(self, u, m, t, a, opts=None):
         """Transfer vault notional from sender to a given address
 
         Parameters:
@@ -132,7 +154,10 @@ class MarketPlace(Deployed):
             m (int) Muturity epoch
             t (string) Address of the amount owner
             a (int) Amount to transfer
-            o (dict) Optional transaction opts
+            opts (dict) Optional transaction opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass

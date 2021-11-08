@@ -5,6 +5,7 @@ from web3 import Web3, EthereumTesterProvider
 from eth_tester import PyEVMBackend, EthereumTester
 from swivel.vendors import W3
 from swivel.constants.bin import MARKET_PLACE, SWIVEL
+from swivel.helpers import transact
 from swivel.contracts import MarketPlace, Swivel
 from .helpers import Caller, Transactor
 
@@ -62,6 +63,6 @@ def swivel(vendor, market_place):
 
 @pytest.fixture(scope='module')
 def market_place_with_swivel(market_place, swivel):
-    tx_hash = market_place.set_swivel_address(swivel.address)
+    tx_hash = transact(market_place.set_swivel_address(swivel.address))
     vendor.instance.eth.wait_for_transaction_receipt(tx_hash)
     return market_place

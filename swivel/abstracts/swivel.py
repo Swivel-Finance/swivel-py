@@ -3,51 +3,77 @@ from swivel.abstracts import Deployed
 
 class Swivel(Deployed):
     @abstractmethod
-    def NAME(self):
-        """The stored name constant for this contract"""
+    def NAME(self, opts=None):
+        """The stored name constant for this contract
 
-        pass
-
-    @abstractmethod
-    def VERSION(self):
-        """The stored version constant for this contract"""
-
-        pass
-
-    @abstractmethod
-    def HOLD(self):
-        """The stored hold constant for this contract
-
-        Description:
-            TODO
+        Returns:
+            web3 callable, opts
         """
 
         pass
 
     @abstractmethod
-    def domain(self):
-        """The stored EIP712 domain hash for this contract"""
+    def VERSION(self, opts=None):
+        """The stored version constant for this contract
+
+        Returns:
+            web3 callable, opts
+        """
 
         pass
 
     @abstractmethod
-    def market_place(self):
-        """The stored address of a market place contract associated with this contract"""
+    def HOLD(self, opts=None):
+        """The stored hold constant for this contract
+
+        Description:
+            TODO
+
+        Returns:
+            web3 callable, opts
+        """
 
         pass
 
     @abstractmethod
-    def admin(self):
-        """The stored admin address for this contract"""
+    def domain(self, opts=None):
+        """The stored EIP712 domain hash for this contract
+
+        Returns:
+            web3 callable, opts
+        """
 
         pass
 
     @abstractmethod
-    def fenominator(self, i):
+    def market_place(self, opts=None):
+        """The stored address of a market place contract associated with this contract
+
+        Returns:
+            web3 callable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def admin(self, opts=None):
+        """The stored admin address for this contract
+
+        Returns:
+            web3 callable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def fenominator(self, i, opts=None):
         """The stored fee constants for this contract
 
         Parameters:
             i (int) Index of the fenominator array to return
+
+        Returns:
+            web3 callable, opts
         """
 
         pass
@@ -61,6 +87,9 @@ class Swivel(Deployed):
             a (list) Order volume (principal) amounts relative to orders list
             s (tuple) Valid ECDSA signatures for each order
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -74,6 +103,9 @@ class Swivel(Deployed):
             a (list) Order volume (principal) amounts relative to orders list
             s (tuple) Valid ECDSA signatures for each order
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -86,6 +118,9 @@ class Swivel(Deployed):
             order (dict) An offline swivel order
             s (string) Valid ECDSA signature for the order
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -99,6 +134,9 @@ class Swivel(Deployed):
             m (int) Maturity timestamp of the market
             a (int) Amount of underlying being deposited
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -112,6 +150,9 @@ class Swivel(Deployed):
             m (int) Maturity timestamp of the market
             a (int) Amount of zctokens being redeemed
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -125,6 +166,9 @@ class Swivel(Deployed):
             m (int) Maturity timestamp of the market
             a (int) Amount of zctokens being redeemed
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass
@@ -137,6 +181,9 @@ class Swivel(Deployed):
             u (string) Address of the underlying token
             m (int) Maturity timestamp of the market
             opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
         """
 
         pass

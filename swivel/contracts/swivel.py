@@ -1,5 +1,6 @@
 from py_eth_sig_utils.signing import signature_to_v_r_s
 from swivel.constants.abi import SWIVEL
+from swivel.helpers import v_r_s_to_dict
 from swivel.abstracts import Swivel as base
 
 class Swivel(base):
@@ -11,49 +12,49 @@ class Swivel(base):
         self.vendor = v
         self.abi = SWIVEL
 
-    def NAME(self):
-        return self.contract.functions.NAME().call()
+    def NAME(self, opts=None):
+        return self.contract.functions.NAME(), opts
 
-    def VERSION(self):
-        return self.contract.functions.VERSION().call()
+    def VERSION(self, opts=None):
+        return self.contract.functions.VERSION(), opts
 
-    def HOLD(self):
-        return self.contract.functions.HOLD().call()
+    def HOLD(self, opts=None):
+        return self.contract.functions.HOLD(), opts
 
-    def domain(self):
-        return self.contract.functions.domain().call()
+    def domain(self, opts=None):
+        return self.contract.functions.domain(), opts
 
-    def market_place(self):
-        return self.contract.functions.marketPlace().call()
+    def market_place(self, opts=None):
+        return self.contract.functions.marketPlace(), opts
 
-    def admin(self):
-        return self.contract.functions.admin().call()
+    def admin(self, opts=None):
+        return self.contract.functions.admin(), opts
 
-    def fenominator(self, i):
-        return self.contract.functions.fenominator(i).call()
+    def fenominator(self, i, opts=None):
+        return self.contract.functions.fenominator(i), opts
 
     def initiate(self, orders, a, s, opts=None):
-        # normalize the full signatures to a list of vrs components. TODO is the list what is expected?
-        components = tuple(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
-        return self.contract.functions.initiate(orders, a, components).transact(self.tx_opts(opts))
+        # normalize the full signatures to a tuple of vrs components (tuples)
+        components = tuple(map(lambda sig: v_r_s_to_dict(signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig))), s))
+        return self.contract.functions.initiate(orders, a, components), self.tx_opts(opts)
 
     def exit(self, orders, a, s, opts=None):
-        # normalize the full signatures to a list of vrs components. TODO is the list what is expected?
-        components = tuple(map(lambda sig: signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig)), s))
-        return self.contract.functions.exit(orders, a, components).transact(self.tx_opts(opts))
+        # normalize the full signatures to a list of vrs components
+        components = tuple(map(lambda sig: v_r_s_to_dict(signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=sig))), s))
+        return self.contract.functions.exit(orders, a, components), self.tx_opts(opts)
 
     def cancel(self, order, s, opts=None):
         components = signature_to_v_r_s(self.vendor.instance.toBytes(hexstr=s))
-        return self.contract.functions.cancel(order, components).transact(self.tx_opts(opts))
+        return self.contract.functions.cancel(order, v_r_s_to_dict(components)), self.tx_opts(opts)
 
     def split_underlying(self, u, m, a, opts=None):
-        return self.contract.functions.splitUnderlying(u, m, a).transact(self.tx_opts(opts))
+        return self.contract.functions.splitUnderlying(u, m, a), self.tx_opts(opts)
 
     def combine_tokens(self, u, m, a, opts=None):
-        return self.contract.functions.combineTokens(u, m, a).transact(self.tx_opts(opts))
+        return self.contract.functions.combineTokens(u, m, a), self.tx_opts(opts)
     
     def redeem_zc_token(self, u, m, a, opts=None):
-        return self.contract.functions.redeemZcToken(u, m, a).transact(self.tx_opts(opts))
+        return self.contract.functions.redeemZcToken(u, m, a), self.tx_opts(opts)
 
     def redeem_vault_interest(self, u, m, opts=None):
-        return self.contract.functions.redeemVaultInterest(u, m).transact(self.tx_opts(opts))
+        return self.contract.functions.redeemVaultInterest(u, m), self.tx_opts(opts)
