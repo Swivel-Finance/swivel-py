@@ -10,26 +10,26 @@ class VaultTracker(base):
         self.vendor = v
         self.abi = VAULT_TRACKER
 
-    def admin(self):
-        return self.contract.functions.admin().call()
+    def admin(self, opts=None):
+        return self.contract.functions.admin(), opts
 
-    def c_token_address(self):
-        return self.contract.functions.cTokenAddr().call()
+    def c_token_address(self, opts=None):
+        return self.contract.functions.cTokenAddr(), opts
 
-    def swivel(self):
-        return self.contract.functions.swivel().call()
+    def swivel(self, opts=None):
+        return self.contract.functions.swivel(), opts
 
-    def matured(self):
-        return self.contract.functions.matured().call()
+    def matured(self, opts=None):
+        return self.contract.functions.matured(), opts
 
-    def maturity(self):
-        return self.contract.functions.maturity().call()
+    def maturity(self, opts=None):
+        return self.contract.functions.maturity(), opts
 
-    def maturity_rate(self):
-        return self.contract.functions.maturityRate().call()
+    def maturity_rate(self, opts=None):
+        return self.contract.functions.maturityRate(), opts
 
-    def vaults(self, o):
-        return self.contract.functions.vaults(o).call()
+    def vaults(self, o, opts=None):
+        return self.contract.functions.vaults(o), opts
     
-    def balances_of(self, o):
-        return self.contract.functions.balancesOf(o).call() 
+    def balances_of(self, o, opts=None):
+        return self.contract.functions.balancesOf(o), opts
