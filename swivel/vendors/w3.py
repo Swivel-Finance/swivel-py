@@ -51,12 +51,26 @@ class W3:
         key = os.getenv('PRIVATE_KEY')
         return self.signer.sign_order(o, i, a, self.instance.toBytes(hexstr=key))
 
+    def estimate_gas(self, a):
+        """Return an estimate of gas to be used in a transaction, as well as the price of the gas
+        
+        Parameters:
+            a (tuple) Length 2 tuple whose values are a web3 transactable object and a tx_opts dict.
+            This is the common return of all Swivel.py H.O.C contract methods. 
+
+        Returns:
+            gas, gas_price
+        """
+
+        built = self.build_transaction(a)
+        return built['gas'], built['gasPrice']
+
     def build_transaction(self, a):
         """Return a suitable transaction object for signing
         
         Description:
-            As per our pattern a[1] is the tx_opts dict. Note that you should include both
-            'gas' and 'chainId' in that dict. Other optional properties are available, see
+            As per our pattern a[1] is the tx_opts dict. Note that you should include, at least,
+            'chainId' in that dict. Other optional properties are available, see
             https://web3py.readthedocs.io/en/latest/web3.eth.account.html#sign-a-transaction.
             * 'maxFeePerGas'
             * 'maxPriorityFeePerGas'
@@ -67,19 +81,31 @@ class W3:
         return a[0].buildTransaction(a[1])
 
     def sign_transaction(self, t):
-        """Called after a transaction has been built with `build_transaction`"""
+        """Called after a transaction has been built with `build_transaction`
+        
+        Parameters:
+            t (dict) A built transaction object from build_transaction
+
+        Returns:
+            A signed transaction
+        """
 
         key = os.getenv('PRIVATE_KEY')
         return self.instance.eth.account.sign_transaction(t, private_key=key)
 
     def send_raw_transaction(self, t):
-        """Given a raw signed transaction, broadcast it"""
+        """Given a raw signed transaction, broadcast it
+        
+        Parameters:
+            t (transaction) A web3 transaction which has been signed
+
+        Returns:
+            A transaction hash suitable for web3's ...wait_for_transaction_receipt method
+        """
 
         return self.instance.eth.send_raw_transaction(t.rawTransaction)
 
     def send(self, a):
         """Convenience method which builds, signs and broadcasts a transaction"""
 
-        built = self.build_transaction(a)
-        signed = self.sign_transaction(built)
-        return self.send_raw_transaction(signed)
+        return self.send_raw_transaction(self.sign_transaction(self.build_transaction(a)))
