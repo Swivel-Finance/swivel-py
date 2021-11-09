@@ -50,3 +50,36 @@ class W3:
 
         key = os.getenv('PRIVATE_KEY')
         return self.signer.sign_order(o, i, a, self.instance.toBytes(hexstr=key))
+
+    def build_transaction(self, a):
+        """Return a suitable transaction object for signing
+        
+        Description:
+            As per our pattern a[1] is the tx_opts dict. Note that you should include both
+            'gas' and 'chainId' in that dict. Other optional properties are available, see
+            https://web3py.readthedocs.io/en/latest/web3.eth.account.html#sign-a-transaction.
+            * 'maxFeePerGas'
+            * 'maxPriorityFeePerGas'
+            * etc...
+        """
+
+        a[1]['nonce'] = self.instance.eth.get_transaction_count(a[1]['from'])
+        return a[0].buildTransaction(a[1])
+
+    def sign_transaction(self, t):
+        """Called after a transaction has been built with `build_transaction`"""
+
+        key = os.getenv('PRIVATE_KEY')
+        return self.instance.eth.account.sign_transaction(t, private_key=key)
+
+    def send_raw_transaction(self, t):
+        """Given a raw signed transaction, broadcast it"""
+
+        return self.instance.eth.send_raw_transaction(t.rawTransaction)
+
+    def send(self, a):
+        """Convenience method which builds, signs and broadcasts a transaction"""
+
+        built = self.build_transaction(a)
+        signed = self.sign_transaction(built)
+        return self.send_raw_transaction(signed)

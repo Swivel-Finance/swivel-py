@@ -37,22 +37,22 @@ def test_maturity(vault_tracker):
     mty = call(vault_tracker.maturity())
     assert mty == 123456789
 
-def test_matured(caller, vault_tracker, vault):
+def test_matured(vault_tracker, vault):
     matured = call(vault_tracker.matured())
     assert matured == False 
 
-def test_maturity_rate(caller, vault_tracker):
+def test_maturity_rate(vault_tracker):
     rate = call(vault_tracker.maturity_rate())
     assert rate == 0
 
-def test_vaults(caller, vault_tracker, vault):
-    clable, opts = vault_tracker.vaults('0xG1mM3mYVaU1t')
+def test_vaults(vault_tracker, vault):
+    called, opts = vault_tracker.vaults('0xG1mM3mYVaU1t')
 
-    assert callable(clable)
+    assert callable(called)
     assert opts == None
 
-def test_balances_of(caller, vault_tracker, vault):
-    clable, opts = vault_tracker.balances_of('0xG1mM3mYBa1anC35')
+def test_balances_of(vault_tracker, vault):
+    called, opts = vault_tracker.balances_of('0xG1mM3mYBa1anC35')
 
-    assert callable(clable)
+    assert callable(called)
     assert opts == None

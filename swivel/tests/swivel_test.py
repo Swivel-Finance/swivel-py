@@ -56,7 +56,7 @@ def test_swivel_admin(swivel):
     addr = call(swivel.admin())
     assert addr == swivel.vendor.account
 
-def test_fenominator(swivel, logger):
+def test_fenominator(swivel):
     fee1 = call(swivel.fenominator(0))
     assert fee1 == 200
     fee2 = call(swivel.fenominator(1))
@@ -66,45 +66,45 @@ def test_fenominator(swivel, logger):
     fee4 = call(swivel.fenominator(3))
     assert fee4 == 200
 
-def test_initiate(transactor, swivel, orders, amounts, signatures, logger):
+def test_initiate(swivel, orders, amounts, signatures):
     txable, opts = swivel.initiate(orders, amounts, signatures, { 'gas': 1000000 })
 
     # if the call encoded correctly we'll get back a callable and a dict
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_exit(transactor, swivel, orders, amounts, signatures):
+def test_exit(swivel, orders, amounts, signatures):
     txable, opts = swivel.exit(orders, amounts, signatures, { 'gas': 250000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_cancel(transactor, swivel, orders, signatures, logger):
+def test_cancel(swivel, orders, signatures):
     txable, opts = swivel.cancel(orders[0], signatures[0], opts={ 'gas': 50000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_split_underlying(transactor, swivel, logger):
+def test_split_underlying(swivel):
     txable, opts = swivel.split_underlying('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea',
         1234567890, 1000, opts={ 'gas': 17000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_combine_tokens(transactor, swivel):
+def test_combine_tokens(swivel):
     txable, opts = swivel.combine_tokens('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 500, { 'gas': 1000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_redeem_zctoken(transactor, swivel):
+def test_redeem_zctoken(swivel):
     txable, opts = swivel.redeem_zc_token('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 700, { 'gas': 2000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_redeem_vault_interest(transactor, swivel):
+def test_redeem_vault_interest(swivel):
     txable, opts = swivel.redeem_vault_interest('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567899, { 'gas': 2500 })
 
     assert callable(txable)

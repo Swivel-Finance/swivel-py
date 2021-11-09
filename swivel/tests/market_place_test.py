@@ -46,21 +46,21 @@ def test_c_token_addr(market_place, underlying, maturity, c_token):
     ctkn = call(market_place.c_token_address(underlying, maturity))
     assert ctkn == c_token
 
-def test_mature_market(transactor, market_place, underlying, maturity):
+def test_mature_market(market_place, underlying, maturity):
     txable, opts = market_place.mature_market(underlying, maturity, { 'gas': 100000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
-def test_mature(caller, market_place, underlying, maturity):
+def test_mature(market_place, underlying, maturity):
     matured = call(market_place.mature(underlying, maturity))
     assert matured == False
 
-def test_maturity_rate(caller, market_place, underlying, maturity):
+def test_maturity_rate(market_place, underlying, maturity):
     rate = call(market_place.maturity_rate(underlying, maturity))
     assert rate == 0
 
-def test_transfer_vault_notional(transactor, market_place, underlying, maturity):
+def test_transfer_vault_notional(market_place, underlying, maturity):
     txable, opts = market_place.transfer_vault_notional(underlying, maturity, '0x50MeDud3', 1000, { 'gas': 200000 })
 
     assert callable(txable)
