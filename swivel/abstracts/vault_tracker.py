@@ -42,18 +42,6 @@ class VaultTracker(Deployed):
         pass
     
     @abstractmethod
-    def matured(self, opts=None):
-        """A boolean flag indicating maturity
-
-        Set to True if the maturity date has been surpassed
-
-        Returns:
-            web3 callable, opts
-        """
-
-        pass
-
-    @abstractmethod
     def maturity(self, opts=None):
         """An Epoch (in seconds) representing the time of maturity
 

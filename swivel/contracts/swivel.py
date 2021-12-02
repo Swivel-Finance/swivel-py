@@ -1,7 +1,7 @@
 from py_eth_sig_utils.signing import signature_to_v_r_s
-from swivel.constants.abi import SWIVEL
 from swivel.helpers import v_r_s_to_dict
 from swivel.abstracts import Swivel as base
+from .abi import SWIVEL
 
 class Swivel(base):
     def __init__(self, v):
@@ -12,13 +12,13 @@ class Swivel(base):
         self.vendor = v
         self.abi = SWIVEL
 
-    def NAME(self, opts=None):
+    def name(self, opts=None):
         return self.contract.functions.NAME(), opts
 
-    def VERSION(self, opts=None):
+    def version(self, opts=None):
         return self.contract.functions.VERSION(), opts
 
-    def HOLD(self, opts=None):
+    def hold(self, opts=None):
         return self.contract.functions.HOLD(), opts
 
     def domain(self, opts=None):
@@ -30,8 +30,14 @@ class Swivel(base):
     def admin(self, opts=None):
         return self.contract.functions.admin(), opts
 
-    def fenominator(self, i, opts=None):
-        return self.contract.functions.fenominator(i), opts
+    def transfer_admin(self, a, opts=None):
+        return self.contract.functions.transferAdmin(a), self.tx_opts(opts)
+
+    def min_feenominator(self, opts=None):
+        return self.contract.functions.MIN_FEENOMINATOR(), opts
+
+    def feenominators(self, i, opts=None):
+        return self.contract.functions.feenominators(i), opts
 
     def initiate(self, orders, a, s, opts=None):
         # normalize the full signatures to a tuple of vrs components (tuples)

@@ -13,6 +13,22 @@ class MarketPlace(Deployed):
         pass
 
     @abstractmethod
+    def transfer_admin(self, a, opts=None):
+        """Allows the current admin to transfer the title to another party
+
+        Description:
+            Note that this method is only callable by the admin
+
+        Parameters:
+            a (address) Address of the new admin
+
+        Returns:
+            web3 transactable, opts
+        """
+
+        pass
+
+    @abstractmethod
     def swivel(self, opts=None):
         """The address of the associated Swivel contract deployment
 
@@ -27,7 +43,7 @@ class MarketPlace(Deployed):
         """Sets the address of the Swivel smart contract this market place is associated with
 
         Description:
-            Note that this method is only callable by the admin
+            Note that this method is only callable by the admin once
 
         Parameters:
             a (address) The address of a deployed Swivel smart contract
@@ -35,6 +51,29 @@ class MarketPlace(Deployed):
 
         Returns:
             web3 transactable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def pause(self, b, opts=None):
+        """Allows the admin to pause / unpause market transactions
+
+        Parameters:
+            b Boolean which acts as a toggle, True to pause, False to unpause
+
+        Returns:
+            web3 transactable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def paused(self, opts=None):
+        """A boolean which indicates a pause in all markets if truthy
+
+        Returns:
+            web3 callable, opts
         """
 
         pass
@@ -55,7 +94,7 @@ class MarketPlace(Deployed):
         pass
 
     @abstractmethod
-    def create_market(self, u, m, c, n, s, d, opts=None):
+    def create_market(self, m, c, n, s, opts=None):
         """Creates a new market
 
         Description:
@@ -65,12 +104,10 @@ class MarketPlace(Deployed):
             Note that this method is only callable by the admin
 
         Parameters:
-            u (string) Address of the underlying token
             m (int) Epoch in seconds, the maturity of the market
             c (string) Address of the Compound token associated with the market
             n (string) Name for the new ZcToken
             s (string) Name for the new ZcToken
-            d (int) Number of digits expected for the new ZcToken
             opts (dict) Optional transaction options
 
         Returns:
@@ -108,39 +145,6 @@ class MarketPlace(Deployed):
 
         Returns:
             web3 transactable, opts
-        """
-
-        pass
-
-    @abstractmethod
-    def mature(self, u, m, opts=None):
-        """Checks if the market has been marked as mature
-
-        Parameters:
-            u (string) Underlying token address
-            m (int) Muturity epoch
-            opts (dict) optional call opts
-
-        Returns:
-            web3 callable, opts
-        """
-
-        pass
-
-    @abstractmethod
-    def maturity_rate(self, u, m, opts=None):
-        """Returns the maturity rate of a given market
-
-        Description:
-            If a market has been matured, the maturity rate will have been set.
-
-        Parameters:
-            u (string) Underlying token address
-            m (int) Muturity epoch
-            opts (dict) optional call opts
-
-        Returns:
-            web3 callable, opts
         """
 
         pass
