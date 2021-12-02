@@ -4,7 +4,7 @@ import logging
 from web3 import Web3, EthereumTesterProvider
 from eth_tester import PyEVMBackend, EthereumTester
 from swivel.vendors import W3
-from swivel.constants.bin import MARKET_PLACE, SWIVEL
+from swivel.contracts.bin import MARKET_PLACE, SWIVEL
 from swivel.helpers import transact
 from swivel.contracts import MarketPlace, Swivel
 

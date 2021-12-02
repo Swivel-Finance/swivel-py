@@ -33,15 +33,15 @@ def amounts():
     return (1000, 500)
 
 def test_name(swivel):
-    name = call(swivel.NAME())
+    name = call(swivel.name())
     assert name == 'Swivel Finance'
 
 def test_version(swivel):
-    verz = call(swivel.VERSION())
+    verz = call(swivel.version())
     assert verz == '2.0.0'
 
 def test_hold(swivel):
-    hold = call(swivel.HOLD())
+    hold = call(swivel.hold())
     assert hold == 259200
 
 def test_domain(swivel):
@@ -56,25 +56,35 @@ def test_swivel_admin(swivel):
     addr = call(swivel.admin())
     assert addr == swivel.vendor.account
 
-def test_fenominator(swivel):
-    fee1 = call(swivel.fenominator(0))
+def test_transfer_admin(swivel, orders):
+    txable, opts = swivel.transfer_admin(orders[0]['maker'])
+
+    assert callable(txable)
+    assert isinstance(opts, dict)
+
+def test_feenominators(swivel):
+    fee1 = call(swivel.feenominators(0))
     assert fee1 == 200
-    fee2 = call(swivel.fenominator(1))
+    fee2 = call(swivel.feenominators(1))
     assert fee2 == 600
-    fee3 = call(swivel.fenominator(2))
+    fee3 = call(swivel.feenominators(2))
     assert fee3 == 400
-    fee4 = call(swivel.fenominator(3))
+    fee4 = call(swivel.feenominators(3))
     assert fee4 == 200
 
+def test_min_feenominator(swivel):
+    the_min = call(swivel.min_feenominator())
+    assert the_min == 33
+
 def test_initiate(swivel, orders, amounts, signatures):
-    txable, opts = swivel.initiate(orders, amounts, signatures, { 'gas': 1000000 })
+    txable, opts = swivel.initiate(orders, amounts, signatures, opts={ 'gas': 1000000 })
 
     # if the call encoded correctly we'll get back a callable and a dict
     assert callable(txable)
     assert isinstance(opts, dict)
 
 def test_exit(swivel, orders, amounts, signatures):
-    txable, opts = swivel.exit(orders, amounts, signatures, { 'gas': 250000 })
+    txable, opts = swivel.exit(orders, amounts, signatures, opts={ 'gas': 250000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
@@ -93,19 +103,19 @@ def test_split_underlying(swivel):
     assert isinstance(opts, dict)
 
 def test_combine_tokens(swivel):
-    txable, opts = swivel.combine_tokens('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 500, { 'gas': 1000 })
+    txable, opts = swivel.combine_tokens('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 500, opts={ 'gas': 1000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
 def test_redeem_zctoken(swivel):
-    txable, opts = swivel.redeem_zc_token('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 700, { 'gas': 2000 })
+    txable, opts = swivel.redeem_zc_token('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567890, 700, opts={ 'gas': 2000 })
 
     assert callable(txable)
     assert isinstance(opts, dict)
 
 def test_redeem_vault_interest(swivel):
-    txable, opts = swivel.redeem_vault_interest('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567899, { 'gas': 2500 })
+    txable, opts = swivel.redeem_vault_interest('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567899, opts={ 'gas': 2500 })
 
     assert callable(txable)
     assert isinstance(opts, dict)

@@ -1,5 +1,5 @@
-from swivel.constants.abi import VAULT_TRACKER
 from swivel.abstracts import VaultTracker as base
+from .abi import VAULT_TRACKER
 
 class VaultTracker(base):
     def __init__(self, v):
@@ -18,9 +18,6 @@ class VaultTracker(base):
 
     def swivel(self, opts=None):
         return self.contract.functions.swivel(), opts
-
-    def matured(self, opts=None):
-        return self.contract.functions.matured(), opts
 
     def maturity(self, opts=None):
         return self.contract.functions.maturity(), opts

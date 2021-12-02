@@ -3,7 +3,7 @@ from swivel.abstracts import Deployed
 
 class Swivel(Deployed):
     @abstractmethod
-    def NAME(self, opts=None):
+    def name(self, opts=None):
         """The stored name constant for this contract
 
         Returns:
@@ -13,7 +13,7 @@ class Swivel(Deployed):
         pass
 
     @abstractmethod
-    def VERSION(self, opts=None):
+    def version(self, opts=None):
         """The stored version constant for this contract
 
         Returns:
@@ -23,11 +23,21 @@ class Swivel(Deployed):
         pass
 
     @abstractmethod
-    def HOLD(self, opts=None):
+    def hold(self, opts=None):
         """The stored hold constant for this contract
 
         Description:
             TODO
+
+        Returns:
+            web3 callable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def min_feenominator(self, opts=None):
+        """The stored constant representing the minimum value for any fee denominator
 
         Returns:
             web3 callable, opts
@@ -66,7 +76,23 @@ class Swivel(Deployed):
         pass
 
     @abstractmethod
-    def fenominator(self, i, opts=None):
+    def transfer_admin(self, a, opts=None):
+        """Allows the current admin to transfer the title to another party
+
+        Description:
+            Note that this method is only callable by the admin
+
+        Parameters:
+            a (address) Address of the new admin
+
+        Returns:
+            web3 transactable, opts
+        """
+
+        pass
+
+    @abstractmethod
+    def feenominators(self, i, opts=None):
         """The stored fee constants for this contract
 
         Parameters:
