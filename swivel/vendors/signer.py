@@ -1,5 +1,5 @@
 from py_eth_sig_utils.signing import sign_typed_data, v_r_s_to_signature
-from swivel.constants import DOMAIN_NAME, DOMAIN_VERSION
+from swivel.constants import DOMAIN_NAME, DOMAIN_VERSION, HEX_PREFIX
 
 class Signer:
     def sign_order(self, o, i, a, k):
@@ -12,14 +12,19 @@ class Signer:
             k (bytes) Private key as bytes
 
         Returns:
-            The signature hex
+            The signature hex with 0x prefix normalized
         """
         
         data = self.prepare_data()
         self.prepare_message(data, o)
         self.prepare_domain(data, i, a)
 
-        return v_r_s_to_signature(*sign_typed_data(data, k)).hex()
+        sig = v_r_s_to_signature(*sign_typed_data(data, k)).hex()
+
+        if sig.startswith(HEX_PREFIX):
+            return sig
+        else:
+            return HEX_PREFIX + sig
 
     def prepare_message(self, d, o):
         """Update the data dictionary with the 'message' entry (Order)"""

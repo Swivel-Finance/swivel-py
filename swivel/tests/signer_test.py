@@ -1,6 +1,6 @@
 import pytest
 from py_eth_sig_utils.signing import recover_typed_data, signature_to_v_r_s
-from swivel.constants import DOMAIN_NAME, DOMAIN_VERSION
+from swivel.constants import DOMAIN_NAME, DOMAIN_VERSION, HEX_PREFIX
 
 @pytest.fixture(scope='module')
 def key(vendor):
@@ -53,6 +53,7 @@ def test_sign_order(vendor, order):
     verifier = '0x25b71690A99A692707f6F4933A76a58ECDD0b9Ac'
     sig = vendor.sign_order(order, 4, verifier)
     assert len(sig) > 0
+    assert sig.startswith(HEX_PREFIX)
 
     # recover it
     data = vendor.signer.prepare_data()
