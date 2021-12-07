@@ -27,7 +27,7 @@ setup(
     packages=find_packages(exclude='tests'),
     python_requires='>=3.7.3',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
