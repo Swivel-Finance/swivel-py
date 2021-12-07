@@ -15,7 +15,7 @@ Swivel.py is a collection of what we call *Higher Order Contracts*. These are la
 constructs that abstract and encapsulate the tedious and boilerplate logic of working with low-level smart contracts.
 
 #### Examples
-Before we dive into the specifics, you should take a look at the classes in action. There is an entire [repo](examples)
+Before we dive into the specifics, you should take a look at the classes in action. There is an entire [repo](https://github.com/Swivel-Finance/scrivel/tree/main/scrivel/examples)
 dedicated to just this. Scrivel shows everything from basic reads to more involved writes to entire market-making
 operations. 
 
@@ -32,7 +32,7 @@ The W3 Vendor class is a Web3.py specific Vendor that can be used with the Swive
 Constructed with a Web3.py specific `Provider`, our class exposes (hoists) some useful methods from within
 Web3 itself.
 
-You can see the Vendor class in use throught the [Scrivel examples](examples)
+You can see the Vendor class in use throught the [Scrivel examples](https://github.com/Swivel-Finance/scrivel/tree/main/scrivel/examples)
 
 ##### Signer
 Our W3 class also constructs and appends a Signer class to itself. This is an abstraction of the 
@@ -47,7 +47,7 @@ There are classes present for exposing the A.P.I (ABI) of deployed Swivel smart 
 * swivel.py
 * market_place.py
 
-will be your places of contact, as shown in [Scrivel](examples). There is a contract present for the VaultTracker which, 
+will be your places of contact, as shown in [Scrivel](https://github.com/Swivel-Finance/scrivel/tree/main/scrivel/examples). There is a contract present for the VaultTracker which, 
 while typically used internally by the MarketPlace, can be used in isolation to check balances.
 
 The H.O.Cs are constructed with a Vendor instance, then connected to a deployment via the `at` method. Once established,
@@ -69,7 +69,7 @@ as described above.
 
 The first item of the tuple will be, depending on the type (call, send), a _callable_ or _transactable_ object.
 Callable objects may be wrapped in the `call` helper to execute. Public constants and variables as well as any
-non-state-changing getters fall under this category. [Swivel calls](swivel_calls) for example. Transactable objects
+non-state-changing getters fall under this category. [Swivel calls](https://github.com/Swivel-Finance/scrivel/blob/main/scrivel/examples/swivel_calls.py) for example. Transactable objects
 are, intentionally, handled differently and are the reason why Swivel.py returns a tuple from contract method invocations.
 State changing send type operations require a signature, unless the account being used in unlocked. You are likely
 not working with unlocked accounts (except perhaps if you are hosting your own node and have your account unlocked locally, see below).
@@ -87,8 +87,3 @@ In the case you are working with unlocked accounts you can use the `transact` he
 ## Running Tests
 
     pytest
-
-[examples]: https://github.com/Swivel-Finance/scrivel/tree/main/scrivel/examples
-[order_examples]: https://github.com/Swivel-Finance/scrivel/blob/main/scrivel/examples/order_examples.py
-[swivel_calls]: https://github.com/Swivel-Finance/scrivel/blob/main/scrivel/examples/swivel_calls.py
-[swivel_transactions]: https://github.com/Swivel-Finance/scrivel/blob/main/scrivel/examples/swivel_transactions.py
