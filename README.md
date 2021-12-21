@@ -22,6 +22,9 @@ operations.
 Remember that Swivel.py is a library with a very specific, and narrow, use case. Present the
 Swivel protocol as an object oriented, pythonic collection ready to be used in your own scripting.
 
+### PSA
+Regardless of your environment, your `PRIVATE_KEY` must be set as an environment variable.
+
 ### Vendors
 One principal concept to grasp is that Swivel.py relies on what in refers to as a `vendor` to handle low-level
 chores related to the Ethereum network. Web3.py is a supported vendor at this time, and there may be more in
