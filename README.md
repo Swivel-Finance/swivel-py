@@ -14,7 +14,15 @@
 Swivel.py is a collection of what we call *Higher Order Contracts*. These are language specific, Python in this case,
 constructs that abstract and encapsulate the tedious and boilerplate logic of working with low-level smart contracts.
 
-#### Examples
+## Installation
+
+    pip install -r requirements.txt
+
+## Running Tests
+
+    pytest
+    
+### Examples
 Before we dive into the specifics, you should take a look at the classes in action. There is an entire [repo](https://github.com/Swivel-Finance/scrivel/tree/main/scrivel/examples)
 dedicated to just this. Scrivel shows everything from basic reads to more involved writes to entire market-making
 operations. 
@@ -22,8 +30,11 @@ operations.
 Remember that Swivel.py is a library with a very specific, and narrow, use case. Present the
 Swivel protocol as an object oriented, pythonic collection ready to be used in your own scripting.
 
-### PSA
+### Private Keys
 Regardless of your environment, your `PRIVATE_KEY` must be set as an environment variable.
+
+---------------------------
+
 
 ### Vendors
 One principal concept to grasp is that Swivel.py relies on what in refers to as a `vendor` to handle low-level
@@ -43,6 +54,9 @@ EIP712 logic needed to sign a Swivel Order _offline_. You generally will not int
 directly as the Vendor itself exposes a `sign_order` method. Also note that, in order to sign an order
 _offline_ you need to be in possession of the private key associated with the address of the order's 
 _maker_. See [here](order_examples) for an example.
+
+
+---------------------------
 
 ### Higher Order Contracts
 There are classes present for exposing the A.P.I (ABI) of deployed Swivel smart contracts in a pyhtonic way. Primarily
@@ -82,11 +96,3 @@ and broadcasts an offline transaction. See [here](https://github.com/Swivel-Fina
 some examples.
 
 In the case you are working with unlocked accounts you can use the `transact` helper directly as there is no need to sign
-
-## Installation
-
-    pip install -r requirements.txt
-
-## Running Tests
-
-    pytest
