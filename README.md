@@ -53,7 +53,7 @@ _maker_. See [here](order_examples) for an example.
 
 ##### Private Key
 As mentioned above, you must have acess to the private key intented to be used for signing transactions _offline_ and it should be
-exported to your shell as `PRIVATE_KEY`.
+exported to your shell as `PRIVATE_KEY`, this is used locally and never broadcast or exposed in any way.
 
 ---------------------------
 
