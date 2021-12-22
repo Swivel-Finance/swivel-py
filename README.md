@@ -30,11 +30,7 @@ operations.
 Remember that Swivel.py is a library with a very specific, and narrow, use case. Present the
 Swivel protocol as an object oriented, pythonic collection ready to be used in your own scripting.
 
-### Private Keys
-Regardless of your environment, your `PRIVATE_KEY` must be set as an environment variable.
-
 ---------------------------
-
 
 ### Vendors
 One principal concept to grasp is that Swivel.py relies on what in refers to as a `vendor` to handle low-level
@@ -55,6 +51,9 @@ directly as the Vendor itself exposes a `sign_order` method. Also note that, in 
 _offline_ you need to be in possession of the private key associated with the address of the order's 
 _maker_. See [here](order_examples) for an example.
 
+##### Private Key
+As mentioned above, you must have acess to the private key intented to be used for signing transactions _offline_ and it should be
+exported to your shell as `PRIVATE_KEY`.
 
 ---------------------------
 
