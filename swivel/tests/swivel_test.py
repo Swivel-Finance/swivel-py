@@ -119,3 +119,9 @@ def test_redeem_vault_interest(swivel):
 
     assert callable(txable)
     assert isinstance(opts, dict)
+
+def test_redeem_swivel_vault_interest(swivel):
+    txable, opts = swivel.redeem_vault_interest('0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea', 1234567999, opts={ 'gas': 2000 })
+
+    assert callable(txable)
+    assert isinstance(opts, dict)

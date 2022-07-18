@@ -64,3 +64,6 @@ class Swivel(base):
 
     def redeem_vault_interest(self, u, m, opts=None):
         return self.contract.functions.redeemVaultInterest(u, m), self.tx_opts(opts)
+
+    def redeem_swivel_vault_interest(self, u, m, opts=None):
+        return self.contract.functions.redeemSwivelVaultInterest(u, m), self.tx_opts(opts)
