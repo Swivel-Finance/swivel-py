@@ -16,7 +16,7 @@ extras = {
 
 setup(
     name='swivel',
-    version='2.1.0',
+    version='2.2.0',
     author='Swivel Finance',
     author_email='support@swivel.finance',
     description='A python library for interacting with the Swivel Finance Protocol',

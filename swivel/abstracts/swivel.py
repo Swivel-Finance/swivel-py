@@ -213,3 +213,18 @@ class Swivel(Deployed):
         """
 
         pass
+
+    @abstractmethod
+    def redeem_swivel_vault_interest(self, u, m, opts=None):
+        """Allows Swivel redeem any currently accrued interest
+
+        Parameters:
+            u (string) Address of the underlying token
+            m (int) Maturity timestamp of the market
+            opts (dict) Optional tx opts
+
+        Returns:
+            web3 transactable, opts
+        """
+
+        pass

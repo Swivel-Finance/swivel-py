@@ -47,7 +47,8 @@ def swivel(vendor, market_place):
     deployed = vendor.instance.eth.contract(abi=swiv.abi, bytecode=SWIVEL)
     # likely does not need 6M, but doesn't matter...
     tx_opts = {'from': vendor.account, 'gas': 6000000 }
-    tx_hash = deployed.constructor(market_place.address).transact(tx_opts)
+    # a verifier address is passed to the swivel ctor now - this one is the DEV rinkeby deploy
+    tx_hash = deployed.constructor(market_place.address, '0x4ccD4C002216f08218EdE1B13621faa80CecfC98').transact(tx_opts)
     tx_rcpt = vendor.instance.eth.wait_for_transaction_receipt(tx_hash)
     swiv.at(tx_rcpt['contractAddress'])
     return swiv
